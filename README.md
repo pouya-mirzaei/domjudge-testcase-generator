@@ -5,7 +5,7 @@ This framework helps you generate test cases for competitive programming problem
 ## Key Features
 
 - Creates the correct directory structure for DOMjudge
-- Compiles and uses your C++ solution to generate expected outputs
+- Supports both C++ and Python solution files to generate expected outputs
 - Supports custom generator modules for different problem types
 - Provides sample generators for common problem types
 
@@ -15,9 +15,16 @@ This framework helps you generate test cases for competitive programming problem
 python test_case_generator.py problem_id solution.cpp --generator custom_generator.py
 ```
 
+or with a Python solution:
+
+```bash
+python test_case_generator.py problem_id solution.py --generator custom_generator.py
+```
+
 This will:
+
 1. Create a `problem_id` directory with DOMjudge structure
-2. Compile your `solution.cpp` file
+2. Compile your C++ solution file (if using C++) or use your Python solution directly
 3. Use the custom generator module to create test cases
 4. Run your solution on each test case to generate the expected outputs
 
@@ -55,7 +62,7 @@ class Generator:
         self.generate_case(framework, 1, {"n": 5}, is_sample=True)
         # Generate secret cases
         self.generate_case(framework, 1, {"n": 100})
-        
+
     def generate_case(self, framework, case_num, params, is_sample=False):
         # Determine case directory and paths
         case_dir = framework.sample_dir if is_sample else framework.secret_dir
@@ -63,15 +70,15 @@ class Generator:
             base_name = f"sample-{case_num}"
         else:
             base_name = f"secret-{case_num}"
-        
+
         input_file = os.path.join(case_dir, f"{base_name}.in")
         output_file = os.path.join(case_dir, f"{base_name}.ans")
-        
+
         # Generate input according to problem specification
         with open(input_file, "w") as f:
             # Write problem-specific test case
             # ...
-        
+
         # Generate output using the solution
         framework.generate_output_from_solution(input_file, output_file)
 ```
