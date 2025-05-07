@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Compiled C/C++ binaries
+*.out
+*.exe
+*.o
+
+# DOMjudge generated folders
+*/data/
+*/data/sample/
+*/data/secret/
+*.in
+*.ans
+
+# Temporary files
+*.log
+*.tmp
+
+# Backup or swap files
+*~
+*.bak
+*.swp
+
+# Test output or auto-generated files
+*.cpp
